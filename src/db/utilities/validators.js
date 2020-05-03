@@ -5,6 +5,10 @@ export const validateIdSchema = Joi.object({
   id: Joi.number().required(),
 });
 
+export const validateEmailSchema = Joi.object({
+  email: Joi.string().email().required(),
+});
+
 export const validateCreateOrderSchema = Joi.object({
   deliveryCost: Joi.number(),
   completed: Joi.boolean(),

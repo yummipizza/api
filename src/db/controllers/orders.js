@@ -1,7 +1,11 @@
 // @models
 import { Models } from "../models";
 // @validators
-import { validateCreateOrderSchema } from "../utilities/validators";
+import {
+  validateCreateOrderSchema,
+  validateIdSchema,
+  validateEmailSchema,
+} from "../utilities/validators";
 
 async function createClient(client) {
   const clientInstance = await Models.Client.findOrCreate({
@@ -43,11 +47,12 @@ export const Orders = {
     try {
       await validateCreateOrderSchema.validateAsync(order);
 
-      // Create client
+      // Save client info
       const clientCreated = await createClient(order.client);
 
       const total = calculateTotal(order.deliveryCost, order.detail);
 
+      // Save order info
       const orderInstance = await Models.Orders.create({
         delivery_cost: order.deliveryCost,
         completed: order.completed,
@@ -58,6 +63,7 @@ export const Orders = {
 
       const orderCreated = orderInstance.get({ plain: true });
 
+      // Save order detail
       const orderDetail = await createOrderDetail(
         orderCreated.id,
         order.detail
@@ -66,6 +72,45 @@ export const Orders = {
       orderCreated.detail = orderDetail;
 
       return orderCreated;
+    } catch (error) {
+      return error;
+    }
+  },
+  async getById(orderId) {
+    try {
+      await validateIdSchema.validateAsync({ id: orderId });
+
+      return Models.Orders.findByPk(orderId);
+    } catch (error) {
+      return error;
+    }
+  },
+  async getByClientEmail(email) {
+    try {
+      await validateEmailSchema.validateAsync({ email });
+
+      return Models.Orders.findAll({
+        include: [
+          {
+            model: Models.Client,
+            as: "client",
+            where: { email },
+          },
+        ],
+      });
+    } catch (error) {
+      return error;
+    }
+  },
+  async getDetail(orderId) {
+    try {
+      await validateIdSchema.validateAsync({ id: orderId });
+
+      return Models.OrderDetail.findAll({
+        where: {
+          order_id: orderId,
+        },
+      });
     } catch (error) {
       return error;
     }

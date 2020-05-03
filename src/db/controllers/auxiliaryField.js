@@ -4,7 +4,7 @@ import { Models } from "../models";
 import { validateIdSchema } from "../utilities/validators";
 
 export const AuxiliaryField = {
-  async getByFieldId(fieldId) {
+  async getById(fieldId) {
     try {
       await validateIdSchema.validateAsync({ id: fieldId });
 
