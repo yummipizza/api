@@ -1,16 +1,12 @@
-// @vendors
-import * as Joi from "@hapi/joi";
-/// @models
+// @models
 import { Models } from "../models";
-
-const validateFieldIdSchema = Joi.object({
-  fieldId: Joi.number().required(),
-});
+// @validators
+import { validateIdSchema } from "../utilities/validators";
 
 export const AuxiliaryField = {
   async getByFieldId(fieldId) {
     try {
-      await validateFieldIdSchema.validateAsync({ fieldId });
+      await validateIdSchema.validateAsync({ id: fieldId });
 
       return Models.AuxiliaryField.findAll({
         where: {

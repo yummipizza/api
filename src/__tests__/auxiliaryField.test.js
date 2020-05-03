@@ -11,10 +11,10 @@ describe("get all product types", () => {
     const err3 = await AuxiliaryField.getByFieldId(undefined);
     const err4 = await AuxiliaryField.getByFieldId(NaN);
 
-    expect(err1.message).toMatch(/fieldId|required/i);
-    expect(err2.message).toMatch(/fieldId|required/i);
-    expect(err3.message).toMatch(/fieldId|required/i);
-    expect(err4.message).toMatch(/fieldId|required/i);
+    expect(err1.message).toMatch(/id|required/i);
+    expect(err2.message).toMatch(/id|required/i);
+    expect(err3.message).toMatch(/id|required/i);
+    expect(err4.message).toMatch(/id|required/i);
   });
 
   it("should returns categories", async () => {

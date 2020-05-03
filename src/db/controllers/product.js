@@ -1,20 +1,12 @@
-// @vendors
-import * as Joi from "@hapi/joi";
-/// @models
+// @models
 import { Models } from "../models";
-
-const validateTypeIdSchema = Joi.object({
-  typeId: Joi.number().required(),
-});
-
-const validateProductIdSchema = Joi.object({
-  id: Joi.number().required(),
-});
+// @validators
+import { validateIdSchema } from "../utilities/validators";
 
 export const Product = {
   async getByType(typeId) {
     try {
-      await validateTypeIdSchema.validateAsync({ typeId });
+      await validateIdSchema.validateAsync({ id: typeId });
 
       return Models.Product.findAll({
         where: {
@@ -26,11 +18,11 @@ export const Product = {
     }
   },
 
-  async getById(id) {
+  async getById(productId) {
     try {
-      await validateProductIdSchema.validateAsync({ id });
+      await validateIdSchema.validateAsync({ id: productId });
 
-      return Models.Product.findByPk(id);
+      return Models.Product.findByPk(productId);
     } catch (error) {
       return error;
     }

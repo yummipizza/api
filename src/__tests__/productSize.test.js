@@ -11,10 +11,10 @@ describe("Get product sizes by product id", () => {
     const err3 = await ProductSize.getSizesByProductId(undefined);
     const err4 = await ProductSize.getSizesByProductId(NaN);
 
-    expect(err1.message).toMatch(/productId|required/i);
-    expect(err2.message).toMatch(/productId|required/i);
-    expect(err3.message).toMatch(/productId|required/i);
-    expect(err4.message).toMatch(/productId|required/i);
+    expect(err1.message).toMatch(/id|required/i);
+    expect(err2.message).toMatch(/id|required/i);
+    expect(err3.message).toMatch(/id|required/i);
+    expect(err4.message).toMatch(/id|required/i);
   });
 
   it("should returns 4 sizes with their prices", async () => {

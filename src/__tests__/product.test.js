@@ -11,10 +11,10 @@ describe("get different products", () => {
     const err3 = await Product.getByType(undefined);
     const err4 = await Product.getByType(NaN);
 
-    expect(err1.message).toMatch(/typeId|required/i);
-    expect(err2.message).toMatch(/typeId|required/i);
-    expect(err3.message).toMatch(/typeId|required/i);
-    expect(err4.message).toMatch(/typeId|required/i);
+    expect(err1.message).toMatch(/id|required/i);
+    expect(err2.message).toMatch(/id|required/i);
+    expect(err3.message).toMatch(/id|required/i);
+    expect(err4.message).toMatch(/id|required/i);
   });
 
   it("should returns <Cheese Pizza>", async () => {

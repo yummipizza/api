@@ -1,16 +1,12 @@
-// @vendors
-import * as Joi from "@hapi/joi";
 /// @models
 import { Models } from "../models";
-
-const validateProductIdSchema = Joi.object({
-  productId: Joi.number().required(),
-});
+// @validators
+import { validateIdSchema } from "../utilities/validators";
 
 export const ProductSize = {
   async getSizesByProductId(productId) {
     try {
-      await validateProductIdSchema.validateAsync({ productId });
+      await validateIdSchema.validateAsync({ id: productId });
 
       return Models.ProductSize.findAll({
         where: { product_id: productId },
