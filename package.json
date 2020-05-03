@@ -1,0 +1,24 @@
+{
+  "name": "@yummi/api",
+  "version": "1.0.0",
+  "scripts": {
+    "start:dev": "NODE_ENV=development backpack --inspect=5858",
+    "build": "backpack build",
+    "start": "NODE_ENV=production node ./build/main.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "backpack-core": "^0.8.4",
+    "convict": "^5.2.0",
+    "jest": "^25.5.4",
+    "mysql2": "^2.1.0",
+    "sequelize": "^5.21.7",
+    "uuid-base62": "^0.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "babel-jest": "^25.5.1"
+  }
+}
