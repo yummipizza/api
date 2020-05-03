@@ -5,6 +5,7 @@ const OrderDetail = (sequelize, DataTypes) => {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
       },
       order_id: DataTypes.INTEGER,
       product_size_id: DataTypes.INTEGER,

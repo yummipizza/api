@@ -30,7 +30,7 @@ export const Product = {
     try {
       await validateProductIdSchema.validateAsync({ id });
 
-      return Models.Product.findOne({ where: { id } });
+      return Models.Product.findByPk(id);
     } catch (error) {
       return error;
     }

@@ -5,10 +5,12 @@ const Client = (sequelize, DataTypes) => {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
       },
       fullName: DataTypes.STRING,
       deliveryAddress: DataTypes.TEXT,
       mobile: DataTypes.STRING,
+      email: DataTypes.STRING,
     },
     {
       freezeTableName: true,

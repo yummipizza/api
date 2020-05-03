@@ -5,6 +5,7 @@ const Orders = (sequelize, DataTypes) => {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
       },
       total: DataTypes.DOUBLE,
       delivery_cost: DataTypes.DOUBLE,
