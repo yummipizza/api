@@ -1,36 +1,33 @@
-const ProductSize = (sequelize, DataTypes) => {
-  const productSizeModel = sequelize.define(
-    "product_size",
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-      },
-      product_id: DataTypes.INTEGER,
-      size_id: DataTypes.INTEGER,
-      price: DataTypes.DOUBLE,
-      description: DataTypes.STRING,
+import Sequelize from "sequelize";
+import { sequelize } from "../";
+import { AuxiliaryField } from "./auxiliaryField";
+
+const productSizeModel = sequelize.define(
+  "product_size",
+  {
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
     },
-    {
-      timestamps: false,
-      freezeTableName: true,
-      tableName: "product_size",
-    }
-  );
+    product_id: Sequelize.INTEGER,
+    size_id: Sequelize.INTEGER,
+    price: Sequelize.DOUBLE,
+    description: Sequelize.STRING,
+  },
+  {
+    timestamps: false,
+    freezeTableName: true,
+    tableName: "product_size",
+  }
+);
 
-  productSizeModel.associate = (models) => {
-    productSizeModel.belongsTo(models.AuxiliaryField, {
-      foreignKey: "product_id",
-      as: "productId",
-    });
+productSizeModel.belongsTo(AuxiliaryField, {
+  foreignKey: "product_id",
+  as: "productId",
+});
 
-    productSizeModel.belongsTo(models.AuxiliaryField, {
-      foreignKey: "size_id",
-      as: "size",
-    });
-  };
-
-  return productSizeModel;
-};
-
-module.exports = ProductSize;
+productSizeModel.belongsTo(AuxiliaryField, {
+  foreignKey: "size_id",
+  as: "size",
+});
+export const ProductSize = productSizeModel;

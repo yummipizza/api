@@ -1,21 +1,20 @@
-const AuxiliaryField = (sequelize, DataTypes) => {
-  return sequelize.define(
-    "auxiliary_fields",
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-      },
-      description: DataTypes.STRING,
-      field_id: DataTypes.INTEGER,
-      field_description: DataTypes.STRING,
-    },
-    {
-      timestamps: false,
-      freezeTableName: true,
-      tableName: "auxiliary_fields",
-    }
-  );
-};
+import Sequelize from "sequelize";
+import { sequelize } from "../";
 
-module.exports = AuxiliaryField;
+export const AuxiliaryField = sequelize.define(
+  "auxiliary_fields",
+  {
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+    },
+    description: Sequelize.STRING,
+    field_id: Sequelize.INTEGER,
+    field_description: Sequelize.STRING,
+  },
+  {
+    timestamps: false,
+    freezeTableName: true,
+    tableName: "auxiliary_fields",
+  }
+);

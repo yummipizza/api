@@ -1,18 +1,18 @@
 // @models
-import { Models } from "../db/models";
+import { OrderDetail, Orders as OrdersModel, Client } from "../db/models";
 // @controllers
 import { Orders } from "../db/controllers";
 // @utilities
 import fixtures from "./utilities/fixtures";
 
 afterAll(async () => {
-  await Models.OrderDetail.destroy({
+  await OrderDetail.destroy({
     where: {},
     truncate: true,
   });
 
-  await Models.Orders.destroy({ where: {} });
-  await Models.Client.destroy({
+  await OrdersModel.destroy({ where: {} });
+  await Client.destroy({
     where: {},
   });
 });

@@ -1,4 +1,4 @@
-import { ProductSize, Product } from "../db/controllers";
+import { ProductSize } from "../db/controllers";
 
 describe("Get product sizes by product id", () => {
   it("validate function", () => {

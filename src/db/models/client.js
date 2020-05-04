@@ -1,22 +1,21 @@
-const Client = (sequelize, DataTypes) => {
-  return sequelize.define(
-    "client",
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-      },
-      fullName: DataTypes.STRING,
-      deliveryAddress: DataTypes.TEXT,
-      mobile: DataTypes.STRING,
-      email: DataTypes.STRING,
-    },
-    {
-      freezeTableName: true,
-      tableName: "client",
-    }
-  );
-};
+import Sequelize from "sequelize";
+import { sequelize } from "../";
 
-module.exports = Client;
+export const Client = sequelize.define(
+  "client",
+  {
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    fullName: Sequelize.STRING,
+    deliveryAddress: Sequelize.TEXT,
+    mobile: Sequelize.STRING,
+    email: Sequelize.STRING,
+  },
+  {
+    freezeTableName: true,
+    tableName: "client",
+  }
+);

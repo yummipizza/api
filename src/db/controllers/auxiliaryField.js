@@ -1,5 +1,5 @@
 // @models
-import { Models } from "../models";
+import { AuxiliaryField as AuxiliaryFieldModel } from "../models";
 // @validators
 import { validateIdSchema } from "../utilities/validators";
 
@@ -8,7 +8,7 @@ export const AuxiliaryField = {
     try {
       await validateIdSchema.validateAsync({ id: fieldId });
 
-      return Models.AuxiliaryField.findAll({
+      return AuxiliaryFieldModel.findAll({
         where: {
           field_id: fieldId,
         },

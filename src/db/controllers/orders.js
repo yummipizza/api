@@ -1,5 +1,5 @@
 // @models
-import { Models } from "../models";
+import { Client, OrderDetail, Orders as OrdersModel } from "../models";
 // @validators
 import {
   validateCreateOrderSchema,
@@ -8,7 +8,7 @@ import {
 } from "../utilities/validators";
 
 async function createClient(client) {
-  const clientInstance = await Models.Client.findOrCreate({
+  const clientInstance = await Client.findOrCreate({
     where: { email: client.email },
     defaults: {
       ...client,
@@ -37,7 +37,7 @@ async function createOrderDetail(orderId, orderDetail) {
     quantity: item.quantity,
   }));
 
-  const orderDetailInstance = await Models.OrderDetail.bulkCreate(rowsToCreate);
+  const orderDetailInstance = await OrderDetail.bulkCreate(rowsToCreate);
 
   return orderDetailInstance;
 }
@@ -53,7 +53,7 @@ export const Orders = {
       const total = calculateTotal(order.deliveryCost, order.detail);
 
       // Save order info
-      const orderInstance = await Models.Orders.create({
+      const orderInstance = await OrdersModel.create({
         delivery_cost: order.deliveryCost,
         completed: order.completed,
         paidAt: Date.now(),
@@ -80,7 +80,7 @@ export const Orders = {
     try {
       await validateIdSchema.validateAsync({ id: orderId });
 
-      return Models.Orders.findByPk(orderId);
+      return OrdersModel.findByPk(orderId);
     } catch (error) {
       return error;
     }
@@ -89,10 +89,10 @@ export const Orders = {
     try {
       await validateEmailSchema.validateAsync({ email });
 
-      return Models.Orders.findAll({
+      return OrdersModel.findAll({
         include: [
           {
-            model: Models.Client,
+            model: Client,
             as: "client",
             where: { email },
           },
@@ -106,7 +106,7 @@ export const Orders = {
     try {
       await validateIdSchema.validateAsync({ id: orderId });
 
-      return Models.OrderDetail.findAll({
+      return OrderDetail.findAll({
         where: {
           order_id: orderId,
         },

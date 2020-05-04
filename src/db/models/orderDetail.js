@@ -1,35 +1,34 @@
-const OrderDetail = (sequelize, DataTypes) => {
-  const orderModel = sequelize.define(
-    "order_detail",
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-      },
-      order_id: DataTypes.INTEGER,
-      product_size_id: DataTypes.INTEGER,
-      quantity: DataTypes.DOUBLE,
+import Sequelize from "sequelize";
+import { sequelize } from "../";
+import { Orders } from "./orders";
+import { ProductSize } from "./productSize";
+
+const orderDetailModel = sequelize.define(
+  "order_detail",
+  {
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    {
-      freezeTableName: true,
-      tableName: "order_detail",
-    }
-  );
+    order_id: Sequelize.INTEGER,
+    product_size_id: Sequelize.INTEGER,
+    quantity: Sequelize.DOUBLE,
+  },
+  {
+    freezeTableName: true,
+    tableName: "order_detail",
+  }
+);
 
-  orderModel.associate = (models) => {
-    orderModel.belongsTo(models.Orders, {
-      foreignKey: "order_id",
-      as: "order",
-    });
+orderDetailModel.belongsTo(Orders, {
+  foreignKey: "order_id",
+  as: "order",
+});
 
-    orderModel.belongsTo(models.ProductSize, {
-      foreignKey: "product_size_id",
-      as: "productSize",
-    });
-  };
+orderDetailModel.belongsTo(ProductSize, {
+  foreignKey: "product_size_id",
+  as: "productSize",
+});
 
-  return orderModel;
-};
-
-module.exports = OrderDetail;
+export const OrderDetail = orderDetailModel;

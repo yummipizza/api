@@ -1,0 +1,10 @@
+type AuxiliaryField {
+  id: ID!
+  description: String!
+  fieldId: String!
+  fieldDescription: String
+}
+
+type Query {
+  getAuxiliaryFieldByFieldId(id: ID!): AuxiliaryField
+}

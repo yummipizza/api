@@ -1,36 +1,34 @@
-const Product = (sequelize, DataTypes) => {
-  const productModel = sequelize.define(
-    "product",
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-      },
-      name: DataTypes.STRING,
-      description: DataTypes.STRING,
-      type_id: DataTypes.INTEGER,
-      image: DataTypes.STRING,
-      category_id: DataTypes.INTEGER,
+import Sequelize from "sequelize";
+import { sequelize } from "../";
+import { AuxiliaryField } from "./auxiliaryField";
+
+const productModel = sequelize.define(
+  "product",
+  {
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
     },
-    {
-      freezeTableName: true,
-      tableName: "product",
-    }
-  );
+    name: Sequelize.STRING,
+    description: Sequelize.STRING,
+    type_id: Sequelize.INTEGER,
+    image: Sequelize.STRING,
+    category_id: Sequelize.INTEGER,
+  },
+  {
+    freezeTableName: true,
+    tableName: "product",
+  }
+);
 
-  productModel.associate = (models) => {
-    productModel.belongsTo(models.AuxiliaryField, {
-      foreignKey: "type_id",
-      as: "productType",
-    });
+productModel.belongsTo(AuxiliaryField, {
+  foreignKey: "type_id",
+  as: "productType",
+});
 
-    productModel.belongsTo(models.AuxiliaryField, {
-      foreignKey: "category_id",
-      as: "category",
-    });
-  };
+productModel.belongsTo(AuxiliaryField, {
+  foreignKey: "category_id",
+  as: "category",
+});
 
-  return productModel;
-};
-
-module.exports = Product;
+export const Product = productModel;

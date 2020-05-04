@@ -1,5 +1,5 @@
 // @models
-import { Models } from "../models";
+import { Product as ProductModel } from "../models";
 // @validators
 import { validateIdSchema } from "../utilities/validators";
 
@@ -8,7 +8,7 @@ export const Product = {
     try {
       await validateIdSchema.validateAsync({ id: typeId });
 
-      return Models.Product.findAll({
+      return ProductModel.findAll({
         where: {
           type_id: typeId,
         },
@@ -22,7 +22,7 @@ export const Product = {
     try {
       await validateIdSchema.validateAsync({ id: productId });
 
-      return Models.Product.findByPk(productId);
+      return ProductModel.findByPk(productId);
     } catch (error) {
       return error;
     }

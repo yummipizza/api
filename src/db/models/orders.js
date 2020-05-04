@@ -1,33 +1,31 @@
-const Orders = (sequelize, DataTypes) => {
-  const ordersModel = sequelize.define(
-    "orders",
-    {
-      id: {
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
-      },
-      total: DataTypes.DOUBLE,
-      delivery_cost: DataTypes.DOUBLE,
-      completed: DataTypes.BOOLEAN,
-      paidAt: DataTypes.DATE,
-      client_id: DataTypes.INTEGER,
-      comments: DataTypes.TEXT,
+import Sequelize from "sequelize";
+import { sequelize } from "../";
+import { Client } from "./client";
+
+const ordersModel = sequelize.define(
+  "orders",
+  {
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
     },
-    {
-      freezeTableName: true,
-      tableName: "orders",
-    }
-  );
+    total: Sequelize.DOUBLE,
+    delivery_cost: Sequelize.DOUBLE,
+    completed: Sequelize.BOOLEAN,
+    paidAt: Sequelize.DATE,
+    client_id: Sequelize.INTEGER,
+    comments: Sequelize.TEXT,
+  },
+  {
+    freezeTableName: true,
+    tableName: "orders",
+  }
+);
 
-  ordersModel.associate = (models) => {
-    ordersModel.belongsTo(models.Client, {
-      foreignKey: "client_id",
-      as: "client",
-    });
-  };
+ordersModel.belongsTo(Client, {
+  foreignKey: "client_id",
+  as: "client",
+});
 
-  return ordersModel;
-};
-
-module.exports = Orders;
+export const Orders = ordersModel;
