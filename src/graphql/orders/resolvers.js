@@ -9,6 +9,14 @@ module.exports = {
       return Product.getById(product_id);
     },
   },
+  Query: {
+    getOrderById(_, { id }, { Orders }) {
+      return Orders.getById(id);
+    },
+    getOrdersByClientEmail(_, { email }, { Orders }) {
+      return Orders.getByClientEmail(email);
+    },
+  },
   Mutation: {
     createOrder(_, { order }, { Orders }) {
       return Orders.create(order);

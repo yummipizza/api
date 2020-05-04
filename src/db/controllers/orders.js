@@ -98,6 +98,7 @@ export const Orders = {
             where: { email },
           },
         ],
+        order: [["paidAt", "DESC"]],
       });
     } catch (error) {
       return error;

@@ -29,6 +29,11 @@ input OrderInput {
   detail: [DetailInput!]!
 }
 
+type Query {
+  getOrderById(id: ID!): Order!
+  getOrdersByClientEmail(email: String!): [Order!]!
+}
+
 type Mutation {
   createOrder(order: OrderInput!): Order
 }
