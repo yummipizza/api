@@ -32,6 +32,7 @@ function calculateTotal(deliveryCost = 0, orderDetail) {
 
 async function createOrderDetail(orderId, orderDetail) {
   const rowsToCreate = orderDetail.map((item) => ({
+    product_id: item.product,
     order_id: orderId,
     product_size_id: item.size,
     quantity: item.quantity,

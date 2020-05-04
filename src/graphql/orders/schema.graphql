@@ -1,0 +1,34 @@
+type Order {
+  id: ID!
+  total: Float!
+  deliveryCost: Float
+  completed: Boolean!
+  clientId: ID!
+  comments: String
+  detail: [OrderDetail]!
+  paidAt: Date
+}
+
+type OrderDetail {
+  id: ID!
+  quantity: Float!
+  product: Product!
+}
+
+input DetailInput {
+  product: ID!
+  size: ID!
+  quantity: Float!
+  price: Float!
+}
+
+input OrderInput {
+  deliveryCost: Float
+  completed: Boolean
+  client: ClientInput
+  detail: [DetailInput!]!
+}
+
+type Mutation {
+  createOrder(order: OrderInput!): Order
+}

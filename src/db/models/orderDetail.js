@@ -1,6 +1,7 @@
 import Sequelize from "sequelize";
 import { sequelize } from "../";
 import { Orders } from "./orders";
+import { Product } from "./product";
 import { ProductSize } from "./productSize";
 
 const orderDetailModel = sequelize.define(
@@ -12,6 +13,7 @@ const orderDetailModel = sequelize.define(
       autoIncrement: true,
     },
     order_id: Sequelize.INTEGER,
+    product_id: Sequelize.INTEGER,
     product_size_id: Sequelize.INTEGER,
     quantity: Sequelize.DOUBLE,
   },
@@ -24,6 +26,11 @@ const orderDetailModel = sequelize.define(
 orderDetailModel.belongsTo(Orders, {
   foreignKey: "order_id",
   as: "order",
+});
+
+orderDetailModel.belongsTo(Product, {
+  foreignKey: "product_id",
+  as: "product",
 });
 
 orderDetailModel.belongsTo(ProductSize, {
