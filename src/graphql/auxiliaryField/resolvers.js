@@ -4,8 +4,14 @@ module.exports = {
     fieldDescription: ({ field_description }) => field_description,
   },
   Query: {
-    getAuxiliaryFieldByFieldId(_, { id }, { AuxiliaryField }) {
-      return AuxiliaryField.getByFieldId(id);
+    getAuxiliaryFieldByFieldTypes(_, { fieldType }, { AuxiliaryField }) {
+      return AuxiliaryField.getByFieldId(fieldType);
     },
+  },
+  FieldTypes: {
+    CATEGORIES: 1,
+    PIZZA_TYPES: 2,
+    PRODUCT_SIZES: 3,
+    DRINK_TYPES: 4,
   },
 };

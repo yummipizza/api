@@ -5,6 +5,13 @@ type AuxiliaryField {
   fieldDescription: String
 }
 
+enum FieldTypes {
+  CATEGORIES
+  PIZZA_TYPES
+  PRODUCT_SIZES
+  DRINK_TYPES
+}
+
 type Query {
-  getAuxiliaryFieldByFieldId(id: ID!): [AuxiliaryField!]!
+  getAuxiliaryFieldByFieldTypes(fieldType: FieldTypes!): [AuxiliaryField!]!
 }

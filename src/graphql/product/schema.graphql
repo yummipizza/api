@@ -1,0 +1,21 @@
+type Product {
+  id: ID!
+  name: String!
+  description: String!
+  image: String!
+  sizes: [ProductSize!]!
+}
+
+type ProductSize {
+  id: ID!
+  productId: ID!
+  sizeId: ID!
+  price: Float
+  description: String
+  size: AuxiliaryField!
+}
+
+type Query {
+  getProductById(id: ID!): Product
+  getProductsByType(typeId: ID!): [Product!]!
+}
