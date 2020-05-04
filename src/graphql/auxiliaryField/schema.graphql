@@ -6,5 +6,5 @@ type AuxiliaryField {
 }
 
 type Query {
-  getAuxiliaryFieldByFieldId(id: ID!): AuxiliaryField
+  getAuxiliaryFieldByFieldId(id: ID!): [AuxiliaryField!]!
 }
