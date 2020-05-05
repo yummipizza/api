@@ -23,5 +23,8 @@
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
     "babel-jest": "^25.5.1"
+  },
+  "engines": {
+    "node": "13.x"
   }
 }
