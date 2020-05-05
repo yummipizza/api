@@ -1,5 +1,10 @@
 // @models
-import { Client, OrderDetail, Orders as OrdersModel } from "../models";
+import {
+  Client,
+  OrderDetail,
+  Orders as OrdersModel,
+  ProductSize,
+} from "../models";
 // @validators
 import {
   validateCreateOrderSchema,
@@ -112,6 +117,12 @@ export const Orders = {
         where: {
           order_id: orderId,
         },
+        include: [
+          {
+            model: ProductSize,
+            as: "productSize",
+          },
+        ],
       });
     } catch (error) {
       return error;

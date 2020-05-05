@@ -13,6 +13,7 @@ type OrderDetail {
   id: ID!
   quantity: Float!
   product: Product!
+  productSize: ProductSize!
 }
 
 input DetailInput {
